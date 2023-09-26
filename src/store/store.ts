@@ -1,28 +1,48 @@
-import { createEvent, createStore } from "effector";
+import { createEffect, createEvent, createStore } from "effector";
 import { ITodo } from "../types/types";
+import { getTodosFromLocalStorage } from "../utils/getFromlocalStorage";
 
-export const addTodo = createEvent<ITodo>()
-export const removeTodo = createEvent<number>()
-export const toggleStatus = createEvent<number>()
+const addTodoReducer = (todos: ITodo[], newTodo: ITodo): ITodo[] => {
+  return [...todos, newTodo];
+}
 
-export const $todos = createStore<ITodo[]>([])
+const removeTodoReducer = (todos: ITodo[], id: number): ITodo[] => {
+  return todos.filter((todo) => id !== todo.id);
+}
+
+const toggleStatusReducer = (todos: ITodo[], id: number): ITodo[] =>{
+  return todos.map((todo) =>
+    id === todo.id ? { ...todo, done: !todo.done } : todo
+  )
+}
+
+const saveStorage = createEffect((todos: ITodo[])  => {
+  localStorage.setItem('todos', JSON.stringify(todos))
+})
+
+
+const addTodo = createEvent<ITodo>()
+const removeTodo = createEvent<number>()
+const toggleStatus = createEvent<number>()
+
+const $todos = createStore<ITodo[]>(getTodosFromLocalStorage())
   .on(
     addTodo, 
-    (todos, newTodo) => [...todos, newTodo]
+    (todos, newTodo) => addTodoReducer(todos, newTodo)
   )
   .on(
     removeTodo, 
-    (todos, id) => todos.filter(todo => id !== todo.id)
+    (todos, id) => removeTodoReducer(todos, id)
   )
   .on(
     toggleStatus, 
-    (todos, id) => 
-      todos.map(
-        todo => id === todo.id 
-        ? {...todo, done: !todo.done} 
-        : todo
-      )
+    (todos, id) => toggleStatusReducer(todos, id)
   )
 
+  $todos.watch((todos) => {
+    saveStorage(todos); 
+  })
 
+
+  export {$todos, toggleStatus, removeTodo, addTodo }
 
