@@ -1,0 +1,26 @@
+.input{
+  font-family: 'Montserrat';
+  color: #808080; 
+  width: 100%;
+  padding: 12px 10px;
+  font-size: 20px;
+  outline: none;
+  border: 0;
+  border-bottom: 1px solid #808080;
+  margin-right: 25px;
+}
+.btn{
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  transform: scale(1);
+  transition: all .5s ease;
+  &:hover{
+    opacity: .7;
+  }
+}
+
+.form{
+  display: flex;
+  align-items: center;
+}

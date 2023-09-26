@@ -1,0 +1,15 @@
+.content{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 60px 85px;
+  background: rgba(219, 219, 219, 0.42);
+  min-height: 500px;
+}
+
+
+@media(max-width: 700px){
+  .content{
+    padding: 30px 15px;
+  } 
+}

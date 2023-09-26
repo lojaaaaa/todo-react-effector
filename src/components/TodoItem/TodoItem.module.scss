@@ -1,0 +1,47 @@
+
+.item{
+  background-color: white;
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 3px 3px 5px 0px rgba(87, 87, 87, 0.25);
+
+}
+.clicked{
+  background-color: #ffaa7848;
+}
+
+
+.text{
+  overflow: hidden;
+  margin-right: 5px;
+  vertical-align: text-bottom;
+  color: #575757;
+  font-weight: 300;
+  font-family: Montserrat;
+  font-size: 20px;
+}
+.clickedText{
+  text-decoration: line-through;
+  text-decoration-color: #575757;
+}
+.buttons{
+  display: flex;
+  gap:5px;
+  margin-left: 5px;
+}
+.button{
+  font-weight: 800;
+  font-size: 18px;
+  background-color: transparent;
+  padding: 10px 15px;
+  border: 0;
+  cursor: pointer;
+  color: white;
+  background-color: #FFAA78;
+  transition: all .3s;
+  &:hover{
+    background-color: #fd8b48;
+  }
+}
