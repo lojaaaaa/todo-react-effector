@@ -7,19 +7,19 @@ import { $todos } from '../../store/store'
 interface Props{}
 
 export const TodoList: FC<Props>  = () => {
-  
   const todos = useStore($todos)
 
   return (
     <div className={style.content}>
+
       {
         todos.length > 0
         ? todos.map(todo => 
           <TodoItem 
-            key={todo.id} 
+            key={todo.id + Math.random()} 
             id={todo.id} 
-            text={todo.text} 
-            done={todo.done}
+            title={todo.title} 
+            completed={todo.completed}
           />)
         : <p className='title'>Здесь пусто</p>
       }

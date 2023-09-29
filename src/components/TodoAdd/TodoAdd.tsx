@@ -11,9 +11,10 @@ export const TodoAdd: FC<Props> = () => {
   const [input, setInput] = useState<string>('')
   const todos = useStore($todos)
 
+
   const handleClick = () =>{
     input 
-      ? addTodo({ id: todos.length, text: input, done: false}) 
+      ? addTodo({ id: todos.length, title: input, completed: false}) 
       : null
     setInput('')
   }
